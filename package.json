@@ -1,12 +1,12 @@
 {
   "name": "@antnf3/coupangapi",
-  "version": "0.0.9",
+  "version": "0.0.91",
   "main": "lib/index.js",
   "files": [
     "lib/**/*"
   ],
   "types": "lib/index.d.ts",
-  "description": "auto blog write",
+  "description": "쿠팡파트너스 API 상품정보 가져오기",
   "author": "antnf3 <antnf3@gmail.com>",
   "keyword": [
     "coupang",
