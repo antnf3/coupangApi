@@ -1,0 +1,42 @@
+{
+  "name": "@antnf3/coupangapi",
+  "version": "0.0.9",
+  "main": "lib/index.js",
+  "files": [
+    "lib/**/*"
+  ],
+  "types": "lib/index.d.ts",
+  "description": "auto blog write",
+  "author": "antnf3 <antnf3@gmail.com>",
+  "keyword": [
+    "coupang",
+    "api",
+    "쿠팡",
+    "API",
+    "COUPANG",
+    "파트너스",
+    "쿠팡 파트너스"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/antnf3/coupangApi.git"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "ts-node src/index.ts",
+    "start": "node lib/index.js"
+  },
+  "dependencies": {
+    "axios": "^0.19.2",
+    "moment": "^2.27.0"
+  },
+  "devDependencies": {
+    "@types/node": "^14.0.14",
+    "ts-node": "^8.10.2",
+    "typescript": "^3.7.5"
+  }
+}
