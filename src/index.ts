@@ -55,7 +55,7 @@ async function getCoupangAPIData({
           // 검색이 아닐때
           return data;
         } else {
-          console.log(data.productData);
+          // console.log(data.productData);
           return data.productData;
         }
       }
