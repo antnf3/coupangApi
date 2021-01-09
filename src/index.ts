@@ -1,25 +1,18 @@
-import { getCouPangApi, getCouPangApiProps } from "./coupaingApi";
-import moment from "moment";
+import getCouPangApi, { IGetCouPangApiProps } from "./coupaingApi";
+import { getCurrentDate, setSequeunce } from "./utils";
 
-/**
- * 현재날짜를 가져온다.
- * @param N/A
- * @return string: YYYY-MM-DD HH:mm:ss
- */
-function getCurrentDate(pFormat?: string) {
-  pFormat = pFormat || "YYYY-MM-DD HH:mm:ss";
-  const datetime = moment().format(pFormat);
-  return datetime;
-}
-
-interface getCoupangDataReturn {
-  categoryName: string;
-  isRocket: boolean;
+export interface IGetCoupangDataReturnProps {
   productId: number;
   productImage: string;
-  productName: string;
   productPrice: number;
+  productName: string;
   productUrl: string;
+  categoryName: string;
+  keyword?: string;
+  rank: number;
+  isRocket: boolean;
+  isFreeShipping?: boolean;
+  seq: number;
 }
 
 /**
@@ -34,7 +27,7 @@ async function getCoupangAPIData({
   transUrls,
   accessKey,
   secretKey,
-}: getCouPangApiProps): Promise<getCoupangDataReturn[]> {
+}: IGetCouPangApiProps): Promise<IGetCoupangDataReturnProps[]> {
   try {
     const response = await getCouPangApi({
       subUrls,
@@ -50,24 +43,22 @@ async function getCoupangAPIData({
       const {
         data: { rCode, rMessage, data },
       } = response;
+
       if (rCode == "0") {
         if (subUrls !== "SEARCH") {
           // 검색이 아닐때
-          return data;
+          return setSequeunce(data);
         } else {
-          // console.log(data.productData);
-          return data.productData;
+          // 검색어로 상품 검색할때
+          return setSequeunce(data.productData);
         }
       }
-      console.log(`${getCurrentDate} rMessage: ${rMessage}`);
-      return [];
+      throw `${getCurrentDate()} rMessage: ${rMessage}`;
     } else {
-      console.log(`${getCurrentDate} 조회된 데이터가 없습니다.`);
-      return [];
+      throw `${getCurrentDate()} 조회된 데이터가 없습니다.`;
     }
   } catch (err) {
-    console.log(`${getCurrentDate} ${err}`);
-    return [];
+    throw `${getCurrentDate()} ${err}`;
   }
 }
 

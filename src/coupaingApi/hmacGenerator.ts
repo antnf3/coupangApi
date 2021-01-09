@@ -1,7 +1,7 @@
 import crypto from "crypto";
 import moment from "moment";
 
-interface GenerateHmacProps {
+interface IGenerateHmacProps {
   REQUEST_METHOD: string;
   URL: string;
   SECRET_KEY: any;
@@ -11,8 +11,8 @@ function generateHmac({
   REQUEST_METHOD,
   URL,
   SECRET_KEY,
-  ACCESS_KEY
-}: GenerateHmacProps): string {
+  ACCESS_KEY,
+}: IGenerateHmacProps): string {
   const parts = URL.split(/\?/);
   const [path, query = ""] = parts;
 
