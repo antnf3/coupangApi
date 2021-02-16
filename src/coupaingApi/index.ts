@@ -50,7 +50,11 @@ async function getCouPangApi({
 }: IGetCouPangApiProps) {
   const method = SUB_URLS[subUrls].method;
   const sSubUrl: string = SUB_URLS[subUrls].url;
-  const sCategoryId = categoryId ? `/${categoryId}` : "";
+  const sCategoryId = categoryId
+    ? subUrls === "SEARCH"
+      ? ""
+      : `/${categoryId}`
+    : "";
   const questionMark = limit || subId || keyword ? "?" : "";
   const sKeyword = keyword ? `keyword=${encodeURIComponent(keyword)}` : "";
   const sAndMark1 = keyword ? "&" : "";
